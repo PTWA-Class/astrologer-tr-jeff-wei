@@ -86,15 +86,12 @@ def get_life_number(year=1900, month=1, day=1) -> int:
     m = get_each_number(month)
     d = get_each_number(day)
     total_num = y+m+d
-    print(total_num)
 
     while len(total_num)>1:
         sum = 0
         for n in total_num:
             sum += n
         total_num = get_each_number(sum)
-        print(total_num)
-
     life_num = total_num[0]
     return life_num
 
