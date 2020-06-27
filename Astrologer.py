@@ -7,6 +7,36 @@
 
 
 def get_constellation(month, day) -> str:
+
+    num = month*100+day
+
+    if num < 321:
+        num = num+1200
+
+    if num >= 220+1200:
+        return '雙魚座'
+    elif num >= 122+1200:
+        return '水瓶座'
+    elif num >= 1223:
+        return '魔羯座'
+    elif num >= 1123:
+        return '射手座'
+    elif num >= 1023:
+        return '天蠍座'
+    elif num >= 923:
+        return '天秤座'
+    elif num >= 823:
+        return '處女座'
+    elif num >= 723:
+        return '獅子座'
+    elif num >= 621:
+        return '巨蟹座'
+    elif num >= 521:
+        return '雙子座'
+    elif num >= 421:
+        return '金牛座'
+    elif num >= 321:
+        return '牡羊座'
     """
     根據生日回傳正確的星座
     牡羊座	3月21日～4月20日
@@ -22,18 +52,24 @@ def get_constellation(month, day) -> str:
     水瓶座	1月22日～2月19日
     雙魚座	2月20日～3月20日
     """
-    
-    return "一個星座"
+
+    return ''
 
 
-def get_each_number(number: int) -> []:
+def get_each_number( number ) -> []:
     """
     輸入一個正整數，然後將每一位數分開。
-    ex get_each_number(1920) 
+    ex get_each_number(1920)
     return [1,9,2,0]
     """
 
-    result = [1,2,3]
+    result = []
+    while number>=10:
+        result.append(number%10)
+        number=int(number/10)
+    result.append(number)
+
+    result.reverse()
 
     return result
 
@@ -44,7 +80,22 @@ def get_life_number(year=1900, month=1, day=1) -> int:
     ex 1995 12 13 -> 1+9+9+5+1+2+1+3 = 31 -> 3+1 =4
     這樣生命靈數就是4
     """
-    life_num = 10
 
+    total_num = []
+    y = get_each_number(year)
+    m = get_each_number(month)
+    d = get_each_number(day)
+    total_num = y+m+d
+    print(total_num)
+
+    while len(total_num)>1:
+        sum = 0
+        for n in total_num:
+            sum += n
+        total_num = get_each_number(sum)
+        print(total_num)
+
+    life_num = total_num[0]
     return life_num
+
 
